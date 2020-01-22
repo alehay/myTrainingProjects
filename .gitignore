@@ -1,4 +1,4 @@
 $ cat .gitignore
 # игнорировать файлы рус
 *.рус
-
+Py/exercises/array/__pycache__/
