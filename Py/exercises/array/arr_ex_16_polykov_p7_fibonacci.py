@@ -31,8 +31,8 @@ from example_fib_for_16ex import fib
 def isFib (n):
        if n == 0: return True
        i = 1
-       while True: 
-              
+       
+       while True:
               if n > fib(i): i = i + 1
               elif n == fib(i): 
                      return True
@@ -47,9 +47,6 @@ arrLength = 1000
 arr = [randint(0, arrMax) for i in range(arrLength)]
 print (arr)
 print("*" * 50)
-
-
-
 #создание массива с извлеченными чсилами принадлежащими ряду фибначи
-fibArr = [x for x in arr if isFib(x) ]
+fibArr = [x for x in arr if isFib(x)]
 print (fibArr)
