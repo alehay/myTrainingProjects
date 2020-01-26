@@ -50,3 +50,8 @@ print("*" * 50)
 #создание массива с извлеченными чсилами принадлежащими ряду фибначи
 fibArr = [x for x in arr if isFib(x)]
 print (fibArr)
+
+# за одно найдем максимальный элемент
+M = max (arr)
+nMax = arr.index (M)
+print ("arr [{}] = {}".format (nMax, M))
