@@ -191,3 +191,186 @@ print()
 print ("rint ceil L")
 print(numpy.rint(L))
 print()
+
+# перебор элементов массива 
+
+# итерация массивов аналогично спискам.
+
+a =  numpy.array([2,5,7,12], int)
+for x in a:
+    print (x)
+print()
+
+b = numpy.array ([[1,2,3],[6,2,7],[9,1,2]],float)
+print ("suourse array")
+print (b)
+print ("array enumeration: ")
+for x in b:
+    print (x)
+print()
+
+print ("array asiignment: x*y-z ")
+for (x, y, z) in b:
+    print (x*y-z)
+print()
+
+# базовые операци над массивами
+print ("summ massive")
+print ("suourse array")
+print (b)
+print()
+print("summ masive numPy:")
+print (numpy.sum(b))
+print()
+print("prod masive base:")
+print (numpy.prod(b))
+print()
+
+# функции которые доют возможность оперирровать 
+# к статистическим данным. 
+# фукнция Mean ( среднее арифматическиое)
+
+
+print ("suourse array")
+print (b)
+print()
+print("masive mean :")
+print (b.mean())
+print()
+print("masive mean axis =1 :")
+print (b.mean(axis=1))
+print()
+
+print("masive var - variation:")
+print (b.var())
+print()
+
+print("masive var  axis = 0- variation:")
+print (b.var(axis=0))
+print()
+
+print("masive std :")
+print (b.std())
+print()
+
+print("masive std axis =1 :")
+print (b.std(axis=1))
+print()
+
+
+print("masive max :")
+print (b.max())
+print()
+
+print("masive max axis = 1 :")
+print (b.max(axis=1))
+print()
+
+
+print("masive min :")
+print (b.min())
+print()
+
+print("masive min axis =1  :")
+print (b.min(axis=1))
+print()
+
+print("masive argmin :")
+print (b.argmin())
+print()
+
+print("masive argmin axis=0:")
+print (b.argmin(axis=0))
+print()
+
+print("masive argmax :")
+print (b.argmax())
+print()
+
+for i in range (3):
+    print("*"*25)
+print()
+
+#сокращение значений в массиве . 
+# что принадлежать к заданному диапазаону.
+# .то тоже самое что примеять 
+# min(max(x, minval), maxval) к каждому элементу
+print("Clip method demo")
+a = numpy.array([6, 2, 5, -1, 0], float)
+print ("sourse matrix")
+print (a)
+print ("clip matrix clip(1, 5)")
+print (a.clip(1, 5))
+print()
+
+# извлучение уникальных элекментов
+a = numpy.array([1, 1, 4, 5, 5, 5, 7], float)
+print("unique method")
+print ("sourse matrix")
+print (a)
+print ("unique method")
+print (numpy.unique (a))
+print()
+
+# получение диагонали квадратной матрицы
+print ("sourse matrix")
+print (b)
+print ("diagonal method")
+print (b.diagonal())
+print()
+print ("diagonal method axis1")
+print (b.diagonal(axis2=1))
+
+print()
+
+# дополнительные методы для работы со статистическими даныыми в массивах 
+
+#медина может быть найдена
+
+print (" demo median method ")
+a1 = numpy.array([1,4,3,8,9,2,3], float)
+print("suorse array is :")
+print (a)
+print ("numpy median is")
+print (numpy.median(a1))
+print()
+
+# коэффициент корреляции для некоторых переменных 
+# наблюдается несколько раз и может быть найден
+# массивов вида 
+# [[x1,x2,...],[y1,y2,...],[z1,z2,...]]
+# где x,y,z  это рзаные квантовые наблюдаемые и
+# и нометра указывают количество "наблюдейний"
+print()
+print ("corrcoef method" )
+
+a = numpy.array([[1,2,1,3],[5,3,1,8]], float)
+print ("suorse array is")
+print (a)
+
+c = numpy.corrcoef(a)
+print ("numpy.corrcoef(a)")
+print (c)
+
+print()
+
+# Имеем возрващаемый массив  с [i, j ] который хранит коэффицент 
+# для i - тых и j тыъ кватовых наблюдаемых 
+
+# аналогично ковариационный момент может быть найдет 
+
+print ("numpy cov method")
+print   (numpy.cov(a))
+print()
+#nympy рандом 
+print("print random seed")
+x = numpy.random.rand(5)
+print (x)
+print()
+
+print ("random array")
+print (numpy.random.rand(2,3))
+print()
+print ("random randint")
+z = numpy.random.randint(5,10)
+print (z)
