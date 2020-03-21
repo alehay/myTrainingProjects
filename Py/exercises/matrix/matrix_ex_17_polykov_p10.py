@@ -28,8 +28,8 @@ def printMatrix ( A ):
         for j in range(len(A[i])):
             print ("{:3d}".format(A[i][j]), end ="")
         print() #для перевода на новую строку. 
-N=3
-M=4
+N=3 #3
+M=4 #4
 matrix_1 = []
 num = 1
 matrix_1 = [[0]*M for i in range(N)]

@@ -14,3 +14,19 @@
 
 заметки по решению :
 """
+
+
+
+def printSeparator ( A, name ):
+    print()
+    for i in range (3):
+        print ( A * 40)
+    print()
+    print (A *15,name, A*15)
+    print ()
+
+def printMatrix ( A ):
+    for i in range(len(A)):
+        for j in range(len(A[i])):
+            print ("{:3d}".format(A[i][j]), end ="")
+        print() #для перевода на новую строку. 
