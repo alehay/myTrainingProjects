@@ -15,13 +15,15 @@
 
 заметки по решению :
 
-МЫСЛИ КАК ДЕКАРТ ЙОПТА !
-гопник - програмирование. ЕЕЕ роцк. 
-КОРДИНАТЫ БЛЯТЬ, КОРДИНАТЫ СУКИН КОТ, (и да мне стыдн, что я совсем не сразу сообразил)
 
-И так основная идея. значит. Смотрю на первый вариант. че думаю. 
-значит проход и шаги, работает счетчик, заполняющий последующую ячейку, 
-а направление змейки, будет определятся интелектуальной функцией . йопта блять. уот 
+основа релеша, алгоритм я вприципе создал алгоритм тупой. и не очень то крсивый.
+и сложный достаточно, в нем ошибка . но несложная но надо будет вернутся и решить
+
+!!!!!!!!!!!!!!!!!!!!!!!!1
+РЕШЕНИЕ С ОШИБКОЙ Я ПЕРЕПУТАЛ ИНДЕКСЫ МАССИВОВ И НАПРАВЛЕНИЕ ОСЕЙ. 
+АЛГОРИТМ РАБОЧИЙ НО РЕАЛИЗАЦИЯ ПЕРЕПУТАННАЯ
+в решении 20 задания, правильная ассоциая осей. 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 """
 def printSeparator ( A, name ):
@@ -49,12 +51,12 @@ def getDirection (matrix,x,y,N,M, initial_direction ):
         if y > 0 and matrix[x][y-1] == 0:  # не уперевшись в рамку, и в заполненый элемент
             direction = 1                  # продолжаем двигаься в этом направлении
         elif y == 0 or matrix[x][y-1] != 0: # если рамка или заполнено, поворачиваем на право ( на восток)
-            direction = 2
+            direction = 2 # НЕТ на запад
         else:
             direction = 0                  # отбивка если что то не так. 
         return direction
 
-    if initial_direction == 2: # идя на восток 
+    if initial_direction == 2: # Это юг получается ну хз
         if x < N - 1 and matrix [x+1][y] == 0:
             direction = 2
         elif x == N-1 or matrix [x+1][y] !=0:
@@ -63,7 +65,7 @@ def getDirection (matrix,x,y,N,M, initial_direction ):
             direction = 0
         return direction
 
-    if initial_direction == 3: # идя на юг.
+    if initial_direction == 3: # восток.
         if y < M-1 and matrix [x][y+1] ==0:
             direction = 3
         elif y == M - 1 or matrix [x][y+1] != 0:
@@ -91,21 +93,31 @@ def getСhangedСoordinates ( x, y, direction ) :
     if direction == 3: #идем на юг
         y = y+1
     if direction == 4: #идем на запад
-        x = x+1
-    return  [x][y]
+        x = x-1
+    return  (x,y)
 
 
 
-N=3 #3 -ограничитель;  i  X - индексы оси
-M=4 #4 -ограничитель;  j  Y - индекс оси. 
+N=5 #3 -ограничитель;  i  X - индексы оси
+M=3 #4 -ограничитель;  j  Y - индекс оси. 
 
 direction = 0 # 0 - нет направления, 1 - север, 2 восток , 3 юг, 4 запад.  
 
-matrix_1 = [[0]*M for i in range(N)]
+matrix_1 = [[0]*N for i in range(M)]
 
 printMatrix (matrix_1)
+printSeparator ("*", "matrix_1")
+ 
+i = 0  # стартовые условия.  
+j = 0
+num = 1
+direction = 1
 
+for z in range (N*M):
+    matrix_1[i][j] = num    
+    num = num+1
+    direction = getDirection(matrix_1, i,j,N,M,direction)
+    i, j = getСhangedСoordinates (i,j,direction )
 
-
-
+printMatrix (matrix_1)
 
