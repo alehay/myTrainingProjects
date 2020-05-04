@@ -47,7 +47,7 @@ def is_draw(field):
     count = 0
     for y in range(3):
         count += 1 if EMPTY_CHAR in field[y] else 0
-    return count == 0
+    return count == 0 # вернуть true если все заполнено
 
 
 def get_user_position(field):

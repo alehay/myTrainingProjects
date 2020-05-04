@@ -114,7 +114,8 @@ def get_computer_position (field):# ход машины
             if board[y][x] == EMPTY:
                 board[y][x] = computer_char
                 score = minimax(board, 0, USER_TURN)
-                print('score is ' score, 'y is ', y , '  x is ', x)
+                print ('comp_position')
+                print('score is ', score, 'y is ', y , '  x is ', x)
                 board[y][x] = EMPTY
                 if score > best_score:
                     best_score = score
@@ -132,17 +133,22 @@ def minimax(board, depth, is_ai_turn): # основная фукцикция р�
 
     if is_ai_turn:
         # выбираем ход который нам выгодней
-        best_score = - 400
+        best_score = - 400 #-1000
         for y in range(3):
             for x in range(3):
                 if board[y][x] == EMPTY:
                     board[y][x] = computer_char
                     score = minimax(board, depth + 1, USER_TURN)
                     board[y][x] = EMPTY
+                    print ('min_max')
+                    print('score is ', score, 'y is ', y , '  x is ', x)
+                    print('bbest_score', best_score)
+                    
                     best_score = max(best_score, score)
+                    
     else:
         # противник выбирает ход который нам не выгоден
-        best_score = 400
+        best_score = 400 #+1000
         for y in range(3):
             for x in range(3):
                 if board[y][x] == EMPTY:
