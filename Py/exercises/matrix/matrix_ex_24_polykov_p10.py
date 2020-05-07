@@ -114,7 +114,6 @@ def get_computer_position (field):# ход машины
             if board[y][x] == EMPTY:
                 board[y][x] = computer_char
                 score = minimax(board, 0, USER_TURN)
-                print('score is ' score, 'y is ', y , '  x is ', x)
                 board[y][x] = EMPTY
                 if score > best_score:
                     best_score = score
@@ -155,7 +154,7 @@ def minimax(board, depth, is_ai_turn): # основная фукцикция р�
 #создаем игровое поле 
 field = [
     [EMPTY for x in range (3)] for y in range (3)
-]
+]0
 
 user_char = get_user_char() # выбрать символ
 computer_char = get_opponent_char(user_char) # присвоить копьютеру альтернативный символ 
