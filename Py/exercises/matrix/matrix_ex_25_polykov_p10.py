@@ -57,9 +57,10 @@
 осуществить ход , и вывести доску. с ходом. 
 
 """
+import copy
 
-WHITE = '*'
-BLACK = '+'
+WHITE = '0' 
+BLACK = '0'
 OCCUPIED = 'X'
 HORIZONTAL_CORDINATS = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P' ) # x
 VERTICAL_CORDINATS = ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16') #y
@@ -76,13 +77,16 @@ def getCheckerBoardSize ():
 # генерируем доску
 def getBoard (sizeBoard, firstСhar , secondСhar):
     board = [
-        [firstСhar for x in range(sizeBoard)] for y in range(sizeBoard)
+        [firstСhar for y in range(sizeBoard)] for x in range(sizeBoard)
     ]
+    
+   
     #делаем поля чернобелыми
     for y in range (sizeBoard):
         for x in range (sizeBoard):
             if (y+x)%2 : 
                 board [y][x] = secondСhar
+   
     return board
 
 # вывод доски 
@@ -127,52 +131,55 @@ def neighbor_xy(x, y):
 
 
 #расчет кординат хода  хода, 
-def step(board, position,depth):
-    move = None   
-    x,y = position
-    buferBoard = board
+def step(board, x,y,depth):
+       
+    
+    buferBoard = copy.deepcopy(board)
     bestScore = -1
+    score = -2
     # если поле не пройдено и не за границей доски 
     for neighbor_x, neighbor_y in neighbor_xy(x, y):
-        if 0 <= neighbor_x < len(buferBoard[y]) \
-        and 0 <= neighbor_y <  len(buferBoard)  \
-        and buferBoard[neighbor_x][neighbor_y] != OCCUPIED :
+        if 0 <= neighbor_y < len(buferBoard[y]) \
+        and 0 <= neighbor_x <  len(buferBoard)  \
+        and buferBoard[neighbor_y][neighbor_x] != OCCUPIED :
             x = neighbor_x
             y = neighbor_y 
-            buferBoard[x][y] = OCCUPIED # cовершаем ход
-            score = getScore (buferBoard,x,y,depth ) # считаем вес при данном ходе
-            buferBoard[x][y] = board [x][y] # возвращаем состояние 
+            buferBoard[y][x] = OCCUPIED # cовершаем ход
+            score = getScore (buferBoard,score,x,y,depth-1) # считаем вес при данном ходе
+            print("score ",score)
+            buferBoard[y][x] = board [y][x] # возвращаем состояние 
             if score > bestScore: # если вес лутший запоминаем
                 bestScore = score
-                move = (x, y) 
-    return move
+                
+            print("best score is ", bestScore)             
+            return x,y
 
         #проверить , куда можно идти .
         #если есть пустые клетки добавть к score +1
         #после итерации прибавить  глубину
 
 
+
 # рекусивно высчитываем вес по зданной глубине , для позиции    
-def getScore (board,x,y,depth):  
+def getScore (buferBoard,score,x,y,depth):  
     #получаем ход куда хотим сходить 
     #проверяем соседние клетки
-    score = -1
+   
     for neighbor_x, neighbor_y in neighbor_xy(x, y):
-        if 0 <= neighbor_x < len(board[y]) \
-        and 0 <= neighbor_y <  len(board) \
-        and board[neighbor_x][neighbor_y] != OCCUPIED :
+        if 0 <= neighbor_y < len(buferBoard[y]) \
+        and 0 <= neighbor_x <  len(buferBoard) \
+        and buferBoard[neighbor_y][neighbor_x] != OCCUPIED :
             if depth == 0:               
-                score = score + 1
-                return  score
+                
+                return  score + 1
             else:
-                board[neighbor_x][neighbor_y] = OCCUPIED
-                score = score + getScore(board,x,y,depth-1)
-    return score
+                buferBoard[neighbor_y][neighbor_x] = OCCUPIED
+                score = getScore(buferBoard,score,neighbor_x,neighbor_y,depth-1)
+
 
 #изменениенение доски в соотвествии с полученным ходом 
-def resultBoard(board,position):
-    x,y = position
-    board[x][y] = OCCUPIED
+def resultBoard(board,x,y):
+    board[y][x] = OCCUPIED
     return board
 
 #начало программы
@@ -180,16 +187,27 @@ def resultBoard(board,position):
 sizeBoard = getCheckerBoardSize()
 # сгенерировали доску по заданным параметрам
 board = getBoard(sizeBoard,WHITE,BLACK)
+
 #вывели доску и кординаты
 printBoard(board,HORIZONTAL_CORDINATS, VERTICAL_CORDINATS)
 
 #спросили стартовую позицию 
-position = getPiece(board,HORIZONTAL_CORDINATS, VERTICAL_CORDINATS)
+x,y = getPiece(board,HORIZONTAL_CORDINATS, VERTICAL_CORDINATS)
 
-for i in range (5):
+board = resultBoard(board, x,y)
 
-    board = resultBoard(board, position)
+printBoard(board,HORIZONTAL_CORDINATS, VERTICAL_CORDINATS)
+
+
+
+for i in range (100):
+
+    board = resultBoard(board, x,y)
 
     printBoard(board,HORIZONTAL_CORDINATS, VERTICAL_CORDINATS)
 
-    position = step (board, position, 2)
+    x,y = step (board, x,y, 5)
+    print()
+    print()
+    print("*"*10)
+    a = input("press k")
