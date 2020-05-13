@@ -139,20 +139,26 @@ def step(board, x,y,depth):
     score = -2
     # если поле не пройдено и не за границей доски 
     for neighbor_x, neighbor_y in neighbor_xy(x, y):
+        print ("debag messege: ")
+        print ("neighbor_x", neighbor_x )
+        print ("neighbor_y", neighbor_y )
         if 0 <= neighbor_y < len(buferBoard[y]) \
         and 0 <= neighbor_x <  len(buferBoard)  \
         and buferBoard[neighbor_y][neighbor_x] != OCCUPIED :
+            print ("debag messege: ")
+            print ("")
+            
             x = neighbor_x
             y = neighbor_y 
             buferBoard[y][x] = OCCUPIED # cовершаем ход
             score = getScore (buferBoard,score,x,y,depth-1) # считаем вес при данном ходе
-            print("score ",score)
+            
             buferBoard[y][x] = board [y][x] # возвращаем состояние 
             if score > bestScore: # если вес лутший запоминаем
                 bestScore = score
                 
-            print("best score is ", bestScore)             
-            return x,y
+                print("best score is ", bestScore)             
+                return x,y
 
         #проверить , куда можно идти .
         #если есть пустые клетки добавть к score +1
@@ -175,6 +181,9 @@ def getScore (buferBoard,score,x,y,depth):
             else:
                 buferBoard[neighbor_y][neighbor_x] = OCCUPIED
                 score = getScore(buferBoard,score,neighbor_x,neighbor_y,depth-1)
+        else:
+            return score
+
 
 
 #изменениенение доски в соотвествии с полученным ходом 
@@ -206,7 +215,7 @@ for i in range (100):
 
     printBoard(board,HORIZONTAL_CORDINATS, VERTICAL_CORDINATS)
 
-    x,y = step (board, x,y, 3)
+    x,y = step (board, x,y, 2)
     print()
     print()
     print("*"*10)
