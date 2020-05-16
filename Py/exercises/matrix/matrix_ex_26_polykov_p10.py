@@ -24,10 +24,88 @@
     проверям "контур" острова, слева на право, с верху в низ
     индексты острова исключаем из проверки, проеряем дальше
     
+    идея
+    подсмотрено с stackoverflow
+    перебор по элементно, слева на право с верху вниз
+    записываем остров +1
+    идем дальше,
+    слева и с верху есть земля? это продолжение острова. не считаем.
+
+    альетрнатива с заливкой "водой" но суть такаяже. а нам надо меньше 
+    действий
+
     идея 
-    может какая то комбинаторная идея сущесвует ?
-    да суещсвует то наверняка , математки люди то такие .. 
-    только я комбинаторику на столько не знаю... а жаль. 
-    но поискать стоит.... а вдруг. 
+    подсмотрено с stackoverflow 
+    на поиск компонента связанности графа ... 
+    где каждая точка будет соединена с 4 соседними . 
     
+    метод рекурсвный , и всеравно достаточно тупой
+    а как учит нас семья и школа: 
+            " меожеш заменить рекурсию циклом заменяй"
+
+
+
+
+генерирование карты ? использование готовой ?
+а я сделаю себе рандомбный генератор, который приводит карту в 
+нужный вид. 
+
+gammavariate()
 """
+import random
+
+N = 30
+M = 30
+
+def pythonStylePrintMatrix ( A ): 
+    for row in A:
+        for x in row:
+            print ("{:4d}".format(x), end ="")
+        print ()
+
+D = [[0]*M for i in range(N)]
+for i in range (N):
+    for j in range(M):
+        temp = random.gammavariate(0.1,1)
+        if temp > 0.075:
+            D [i][j] = 1
+
+def corner (D):
+    run = True
+    while run:
+        run = False
+        for i in range (N):
+            for j in range(M):      
+                #case 1 bottom right corner 
+                if i>0 and j>0:
+                    if D[i - 1][j - 1] == 1 \
+                    and D[i - 1][j] == 1 \
+                    and D[i][j - 1] == 1:
+                        D[i][j] = 4  
+                        #run = True
+                #case 2 top right corner 
+                if i < N - 1 and j > 0:
+                    if D[i + 1][j - 1] == 1 \
+                    and D[i + 1][j] == 1 \
+                    and D[i][j - 1] == 1:
+                        D[i][j] = 5
+                        #run = True
+                #case 3 top left corner
+                if i < N - 1 and j < M - 1:
+                    if D[i + 1][j + 1] == 1 \
+                    and D[i + 1][j] == 1 \
+                    and D[i][j + 1] == 1:
+                        D[i][j] = 6  
+                        #run = True
+                #case 4 bottom left corner
+                if i > 0 and j < M - 1:
+                    if D[i - 1][j + 1] == 1 \
+                    and D[i - 1][j] == 1\
+                    and D[i][j + 1] == 1:
+                        D[i][j] = 7
+                        #run = True
+
+
+
+corner (D)
+pythonStylePrintMatrix (D)
