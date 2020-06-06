@@ -1,0 +1,6 @@
+#ifndef MYFILE_H_INCLUDED
+#define MYFILE_H_INCLUDED
+
+
+
+#endif // MYFILE_H_INCLUDED
