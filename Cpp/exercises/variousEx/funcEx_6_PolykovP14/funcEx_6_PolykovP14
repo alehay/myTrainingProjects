@@ -1,0 +1,3 @@
+write a function "WithPrarityBit" that takes a non-negative number and modifies it by adding a partity bit to the binary notation so that the mumber of units in the binary notation bocomes even. 
+
+Ecample 13 in a binary system is 1101(2), It is necessary to add a bit with the right equal to 1 so that the number of units becomes even 11011 = 27

@@ -1,0 +1,3 @@
+Write a logical function "isAutomurph" which returns the true value if the number passed to it is automorphic (the last digits of its square coincide with the number itself 
+
+e.g. 25^2 = 625
