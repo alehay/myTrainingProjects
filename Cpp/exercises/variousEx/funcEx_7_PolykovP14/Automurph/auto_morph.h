@@ -15,6 +15,6 @@ bool  isAutomorph (long testingNum);
 
 static const int g_numbersOfDigit {10};
 
-bool comparisonTest (int largeNum , int  lowerNum );
+bool comparisonTest ( int largeNum , int  lowerNum );
 
 #endif // AUTO_MORPH_H

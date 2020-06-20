@@ -30,8 +30,7 @@ unsigned long int getNumUser (){
         }
     }
 
-unsigned getSqrt(unsigned long l)
-{
+unsigned getSqrt(unsigned long l){
       unsigned long temp, div = l;
       unsigned rslt = (unsigned)l;
       if (l <= 0)
@@ -52,8 +51,7 @@ unsigned getSqrt(unsigned long l)
 }
 
 void getExtractedDigits (long numberFromExtract , int *arrayToExtract , int arrayLeght ){
-
-    for (int i = 0; i <= arrayLeght ; ++i ){
+    for (int i = 0; i <= arrayLeght ; ++i){
         arrayToExtract[i] = numberFromExtract % 10;
         numberFromExtract /= 10;
     }
