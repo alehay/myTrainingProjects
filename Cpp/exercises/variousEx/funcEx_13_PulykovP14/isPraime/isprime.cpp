@@ -38,7 +38,7 @@ unsigned long long getGreatCommonFactor (unsigned long long a,unsigned long long
 
 unsigned long long mul(unsigned long long a, unsigned long long b, unsigned long long m){
 //modulation for exponentiation
-    if(b == 1)
+    if(b <= 1)
         return a;
     if(b % 2 == 0) {
         unsigned long long t = mul(a, b / 2, m);
@@ -56,7 +56,7 @@ unsigned long long pows(unsigned long long a, unsigned long long b, unsigned lon
         unsigned long long t = pows(a, b / 2, m);
         return mul(t , t, m) % m;
     }
-    return ( mul( pows(a, b-1, m) , a, m) ) % m;
+    return ( mul( pows( a, b - 1, m) , a, m) ) % m;
 }
 
 bool isPrimeFerma (unsigned long long int num) {
@@ -67,12 +67,12 @@ bool isPrimeFerma (unsigned long long int num) {
         return false;
     }
     srand( time(NULL) );
-    for(int i=0;i<100;i++){
+    for(int i = 0; i < 100; i++){
         unsigned long long a = (rand() % (num - 2)) + 2;
         if (getGreatCommonFactor(a, num) != 1){
             return false;
             }
-        if( pows(a, num-1, num) != 1){
+        if( pows(a, num - 1, num) != 1){
             return false;
         }
     }
