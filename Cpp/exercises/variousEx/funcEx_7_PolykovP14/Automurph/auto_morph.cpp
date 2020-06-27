@@ -4,10 +4,6 @@
 #include <ctime> // for function time()
 #include "auto_morph.h" // my heder file
 
-
-
-
-
 //user enters a number into the console
 unsigned long int getNumUser (){
     while (true){ // endless cycle
@@ -51,7 +47,7 @@ unsigned getSqrt(unsigned long l){
 }
 
 void getExtractedDigits (long numberFromExtract , int *arrayToExtract , int arrayLeght ){
-    for (int i = 0; i <= arrayLeght ; ++i){
+    for (int i = 0; i <= arrayLeght; ++i){
         arrayToExtract[i] = numberFromExtract % 10;
         numberFromExtract /= 10;
     }
