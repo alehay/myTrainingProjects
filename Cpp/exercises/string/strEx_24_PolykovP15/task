@@ -1,0 +1,4 @@
+write a function that calculates the difference between 2 times.
+
+Time is stored as a character string.
+  for example: "23: 59 03/25/2008"   

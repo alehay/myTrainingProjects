@@ -47,8 +47,14 @@ unsigned long long mul(unsigned long long a, unsigned long long b, unsigned long
     return ( mul(a, b - 1, m) + a) % m;
 }
 
+//binary exponentiation:
+// if the exponent is even :
+//          a^b = ( a^(b/2) )^2 = ( a^(b/2) ) * ( a^(b/2) )
+// else :
+//          a^b = ( a^(b-1) )*a
+// recursive exponentiation where in the tail
+// of the recursion is multiplication in function MUL
 unsigned long long pows(unsigned long long a, unsigned long long b, unsigned long long m){
-// binary exponentiation
     if(b == 0) {
         return 1;
     }
@@ -59,6 +65,11 @@ unsigned long long pows(unsigned long long a, unsigned long long b, unsigned lon
     return ( mul( pows( a, b - 1, m) , a, m) ) % m;
 }
 
+// Fermat's little theorem:
+// a - integer not divisible by P
+// a^num = a % num <<equivalently>>  a^(num-1) = 1 % num
+// only if their greatest common factor 1 >> GKF( A and NUM ) = 1
+// and and num is prime
 bool isPrimeFerma (unsigned long long int num) {
     if(num == 2) {
         return true;
@@ -71,7 +82,7 @@ bool isPrimeFerma (unsigned long long int num) {
         unsigned long long a = (rand() % (num - 2)) + 2;
         if (getGreatCommonFactor(a, num) != 1){
             return false;
-            }
+        }
         if( pows(a, num - 1, num) != 1){
             return false;
         }

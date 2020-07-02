@@ -1,0 +1,3 @@
+Write a procedure that takes a character string and builds its truth table
+
+Variables A B C D and characters ( | !  &)  Can be used in the expression

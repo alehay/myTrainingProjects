@@ -1,0 +1,19 @@
+Write a function “Base2dec”, which translates 
+a number from the number system with base n (2 <= n <= 36) 
+into a decimal system
+
+the original number is stored as a character string
+
+
+Write the function “Base2Base”, which translates
+the number from the number system with base n (2 <= n <= 36)
+ to the number system with the sounding m (2 <= m <= 36)
+
+the original number is stored as a character string
+
+
+
+write a function Roman2dec that translates a number from 10 
+into the Roman numeral system
+
+and Dec2Roman
