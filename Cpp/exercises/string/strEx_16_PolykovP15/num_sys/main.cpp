@@ -10,6 +10,7 @@
 /* decision notes :
  * +    input : number, base system -> validation data.
  *
+ *
  */
 
 #include <iostream>
@@ -19,28 +20,40 @@
 
 
 int main()
-{
-    std::string numberString = "";
-    numberString =  getBigNumUser ();
+{ while (true) {
+
+
     int numBase {0};
-    numBase = getBaseNumUser();
+    numBase = 10; //getBaseNumUser();
+    bigNum number;
+    std::vector <bigNum> numbers;
 
-    bigNum firstBigNum;
-    firstBigNum.isNegative = false;
-    firstBigNum.radix = numBase;
-     ;
-
-    for (int i = 0; i < numberString.size() ; ++i) {
-        firstBigNum.mantissa.push_back( ansii2intConvert (numberString[i]));
+    for (int i = 0; i < 2 ; ++i ) {
+        numbers.push_back(number);
+        numbers.at(i).isNegative = false;
+        numbers.at(i).radix = numBase;
+        std::string numberString = "";
+        numberString =  getBigNumUser ();
+        //reversibly remember the number
+        for (int j =  numberString.size() - 1; j >= 0 ; --j) {
+            numbers.at(i).mantissa.push_back( ansii2intConvert(numberString[j]) );
+        }
     }
 
+        // big num for result
+    numbers.push_back(number);
 
-    std::cout << "number in string " <<numberString << "size = " << numberString.size() << std::endl;
-    std::cout << "number in base " << numBase << std::endl;
+    getSumm(&numbers.at(0), &numbers.at(1), &numbers.at(2));
 
-    for (int i = 0; i < numberString.size() ; ++i) {
-      std::cout << firstBigNum.mantissa.at(i) << "\t" << int2ansiiConvert(firstBigNum.mantissa.at(i)) << std::endl;
+    for (int i = 0; i < 3; ++ i ) {
+        std::cout<< std::endl;
+        for (int j = 0 ; j < numbers.at(i).mantissa.size() ;++j ) {
+            std::cout << numbers.at(i).mantissa.at(j) ;
+        }
     }
+    std::cout << std::endl;
+
+}
 
     return 0;
 }
