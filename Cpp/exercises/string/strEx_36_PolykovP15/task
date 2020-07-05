@@ -1,3 +1,2 @@
-Write a procedure that takes a character string and builds its truth table
-
-Variables A B C D and characters ( | !  &)  Can be used in the expression
+write a program like "Wheel of Fortune"
+computer makes a word, a person tries to solve with 8 attempts.

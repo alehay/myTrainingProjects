@@ -1,3 +1,10 @@
-Write a procedure that takes a character string and builds its truth table
+1)write a function that finds the sum of two large numbers
+data entry with a string e. g.
+ "1325454132145143521454557 + 54654512541543215 = 143545 ..."
 
-Variables A B C D and characters ( | !  &)  Can be used in the expression
+2)modify the function so that it can add an arbitrary number of numbers
+
+3) change the function so that it can handle subtraction
+
+
+

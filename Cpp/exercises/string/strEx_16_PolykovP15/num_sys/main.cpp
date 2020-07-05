@@ -19,12 +19,10 @@
 #include <vector>
 
 
-int main()
-{ while (true) {
-
-
-    int numBase {0};
-    numBase = 10; //getBaseNumUser();
+int main(){
+    while (true) {
+    int numBase {10};
+    numBase = getBaseNumUser();
     bigNum number;
     std::vector <bigNum> numbers;
 
@@ -39,21 +37,21 @@ int main()
             numbers.at(i).mantissa.push_back( ansii2intConvert(numberString[j]) );
         }
     }
-
         // big num for result
     numbers.push_back(number);
 
-    getSumm(&numbers.at(0), &numbers.at(1), &numbers.at(2));
+    getDifference(&numbers.at(0), &numbers.at(1), &numbers.at(2));
+
 
     for (int i = 0; i < 3; ++ i ) {
+        straightenNum (&numbers.at(i));
         std::cout<< std::endl;
         for (int j = 0 ; j < numbers.at(i).mantissa.size() ;++j ) {
             std::cout << numbers.at(i).mantissa.at(j) ;
         }
     }
     std::cout << std::endl;
-
-}
-
+    }
     return 0;
+
 }

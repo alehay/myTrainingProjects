@@ -17,6 +17,9 @@ char int2ansiiConvert (int num);
 void converterBase2Base (bigNum * InitNum);
 int max (int a, int b);
 int min (int a, int b);
+int pow(int num , int exp);
+void straightenNum (bigNum * initNum) ;
 void getSumm (bigNum* aNum , bigNum* bNum , bigNum* resultNum) ;
+void getDifference (bigNum * aNum, bigNum * bNum, bigNum * resultNum) ;
 
 #endif // NUM_SYS_H
