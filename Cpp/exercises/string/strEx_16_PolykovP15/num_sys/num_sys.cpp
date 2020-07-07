@@ -87,7 +87,7 @@ char int2ansiiConvert (int num) {
 
 // function truncates the number to the desired position
 // e.g. ( 1 3 12 3 ) base(10) -> ( 1 3 2 4 )
-void straightenNum (bigNum * initNum) {
+void normalize (bigNum * initNum) {
     int baseNum = initNum->radix;
     int leghtNum = initNum->mantissa.size();
     initNum->mantissa.push_back(0);
@@ -117,6 +117,19 @@ void lessThenDec2Dec (bigNum * aNum, bigNum * resultNum) {
 void moreThenDec2Dec ();
 */
 
+void base2Bin (bigNum * aNum) {
+    aNum->radix = 2;
+    int length = aNum->mantissa.size ();
+    int i {0};
+    while (true) {
+
+        aNum->mantissa.at(i+1) += aNum->mantissa.at(i) % aNum->radix;
+        aNum->mantissa.at(i) = aNum->mantissa.at(i) / aNum->radix;
+        ++i;
+        aNum->mantissa.push_back (0);
+    }
+}
+
 //summ long number func
 void getSumm (bigNum * aNum, bigNum * bNum, bigNum * resultNum) {
     // identify a larger number
@@ -142,7 +155,7 @@ void getSumm (bigNum * aNum, bigNum * bNum, bigNum * resultNum) {
             resultNum->mantissa.push_back(bigestNum->mantissa.at(i));
         }
     }
-    straightenNum(resultNum);
+    normalize(resultNum);
 }
 
 

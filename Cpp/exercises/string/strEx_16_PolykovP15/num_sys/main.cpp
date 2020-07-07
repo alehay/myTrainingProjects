@@ -40,11 +40,12 @@ int main(){
         // big num for result
     numbers.push_back(number);
 
-    getDifference(&numbers.at(0), &numbers.at(1), &numbers.at(2));
+   // getDifference(&numbers.at(0), &numbers.at(1), &numbers.at(2));
+   base2Bin (&numbers.at(0));
+   base2Bin (&numbers.at(1));
 
 
-    for (int i = 0; i < 3; ++ i ) {
-        straightenNum (&numbers.at(i));
+    for (int i = 0; i < 2; ++ i ) {
         std::cout<< std::endl;
         for (int j = 0 ; j < numbers.at(i).mantissa.size() ;++j ) {
             std::cout << numbers.at(i).mantissa.at(j) ;

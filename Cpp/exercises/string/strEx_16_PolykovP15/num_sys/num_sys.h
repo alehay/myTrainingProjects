@@ -9,7 +9,6 @@ struct bigNum {
     std::vector <int> mantissa ;
 };
 
-
 std::string getBigNumUser ();
 int getBaseNumUser ();
 int ansii2intConvert (char ansii);
@@ -21,5 +20,6 @@ int pow(int num , int exp);
 void straightenNum (bigNum * initNum) ;
 void getSumm (bigNum* aNum , bigNum* bNum , bigNum* resultNum) ;
 void getDifference (bigNum * aNum, bigNum * bNum, bigNum * resultNum) ;
+void base2Bin (bigNum * aNum) ;
 
 #endif // NUM_SYS_H
