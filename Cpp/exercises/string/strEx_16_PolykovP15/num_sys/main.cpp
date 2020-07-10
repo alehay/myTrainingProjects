@@ -26,6 +26,8 @@ int main(){
     bigNum number;
     std::vector <bigNum> numbers;
 
+
+
     for (int i = 0; i < 2 ; ++i ) {
         numbers.push_back(number);
         numbers.at(i).isNegative = false;

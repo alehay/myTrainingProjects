@@ -1,12 +1,12 @@
 #ifndef NUM_SYS_H
 #define NUM_SYS_H
-#include <vector>
+#include <string>
 
 
 struct bigNum {
     bool isNegative ; // sign
     int radix; //the base of a system of numeration
-    std::vector <int> mantissa ;
+    std::string mantissa ;
 };
 
 std::string getBigNumUser ();
