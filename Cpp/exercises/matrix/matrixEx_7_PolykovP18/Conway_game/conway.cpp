@@ -38,11 +38,8 @@ void destructorArr (char **arr, int width) {
 void filling (char **arr, int width , int height) {
     for (int i = 0 ; i < width ; ++i ) {
         for (int j = 0 ; j < height ; ++j ) {
-            if ((i+j) % 2 == 0) {
-                arr[i][j] = ' ' ;
-            } else {
-                arr[i][j] = '+';
-            }
+            arr[i][j] = g_emptyCell ;
+
         }
     }
 }
@@ -50,10 +47,10 @@ void filling (char **arr, int width , int height) {
 void revertfiling (char **arr, int width , int height) {
     for (int i = 0 ; i < width ; ++i ) {
         for (int j = 0 ; j < height ; ++j ) {
-            if (arr[i][j] == ' ') {
-                arr[i][j] = static_cast<char> ( getRandomNumber ( 46,126) );
+            if (arr[i][j] == g_liveCell) {
+                arr[i][j] = g_emptyCell;
             } else {
-                arr[i][j] = ' ';
+                arr[i][j] = g_liveCell;
             }
         }
     }
@@ -74,3 +71,70 @@ int getRandomNumber(int min, int max) {
     return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
+void fillingFirstGeneration (char ** arr , int width , int height ,
+                             int density , int group) {
+    density = 100 - density ;
+    for (int i = 0 ; i < width ; ++i ) {
+        for (int j = 0 ; j < height ; ++j ) {
+            if ( (getRandomNumber (0,90) - density/3 > getRandomNumber (0, density + 30)) ) {
+                arr[i][j] = g_liveCell ;
+            } else {
+                arr[i][j] = g_emptyCell;
+            }
+        }
+    }
+}
+
+int getNeighborNum (char **arr, int a , int width, int b ,int height) {
+    short int neighibor {0};
+    for ( int i = -1 ; i < 2 ; ++i ) {
+        for ( int j = - 1 ; j < 2 ; ++j  ) {
+            // exclude from check:
+            // parent cell
+            if ( i == 0 && j == 0 ) {
+                continue;
+            }
+            //exclude from check
+            // going abroad
+            if ( (a + i < 0) || (b + j < 0) ||
+               (a + i >= width) || (b + j >= height ) ) {
+                continue;
+            }
+
+            if (arr[a+i][b+j] == g_liveCell) {
+                ++neighibor;
+            }
+        }
+    }
+
+    return neighibor;
+}
+
+char ** stepConwayLive (char **arr, char **buffer, int width, int height) {
+    for (int i = 0 ; i < width ; ++i) {
+        for (int j = 0; j < height ; ++j) {
+            int neighibor {0};
+            buffer[i][j] = arr [i][j];
+            neighibor = getNeighborNum (arr, i , width , j , height);
+
+            if (buffer [i][j] == g_emptyCell) {
+                if (neighibor == 3) {
+                    buffer [i][j] == g_liveCell;
+                }
+            if (buffer[i][j] == g_liveCell) {
+                if ( (neighibor < 2) || (neighibor > 3) ) {
+                    buffer [i][j] == g_emptyCell;
+                }
+            }
+
+            }
+        }
+    }
+    return buffer;
+}
+
+void flip (char **A , char **B ) {
+    char **temp = A;
+    A = B;
+    B = temp;
+}

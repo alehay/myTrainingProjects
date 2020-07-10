@@ -24,16 +24,21 @@ int main()
     char **arr2 = constructorArr (width, height);
 
     char **arr = arr1 ;
+    char **arrBuf = arr2;
 
     filling (arr, width, height);
+    fillingFirstGeneration (arr, width, height , density, group);
 
-    for (int i = 0; i < 1000; ++i) {
+    for (int i = 0; i < 100; ++i) {
         std::system("clear");
+
+        arr = stepConwayLive ( arr , arrBuf, width , height);
         printArr (arr, width, height);
-        revertfiling (arr, width, height);
+        //flip (arr, arrBuf);
         usleep(300000);
         //sleep (1);
     }
-    destructorArr ( arr, width);
+    destructorArr ( arr1, width);
+    destructorArr (arr2, width);
     return 0;
 }
