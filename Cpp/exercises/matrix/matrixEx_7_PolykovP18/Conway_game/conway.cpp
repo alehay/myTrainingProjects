@@ -72,7 +72,7 @@ int getRandomNumber(int min, int max) {
 }
 
 void fillingFirstGeneration (char ** arr , int width , int height ,
-                             int density , int group) {
+                             int density ) {
     density = 100 - density ;
     for (int i = 0 ; i < width ; ++i ) {
         for (int j = 0 ; j < height ; ++j ) {
@@ -106,7 +106,6 @@ int getNeighborNum (char **arr, int a , int width, int b ,int height) {
             }
         }
     }
-
     return neighibor;
 }
 
@@ -114,23 +113,21 @@ char ** stepConwayLive (char **arr, char **buffer, int width, int height) {
     for (int i = 0 ; i < width ; ++i) {
         for (int j = 0; j < height ; ++j) {
             int neighibor {0};
-            buffer[i][j] = arr [i][j];
             neighibor = getNeighborNum (arr, i , width , j , height);
-
-            if (buffer [i][j] == g_emptyCell) {
+            buffer [i][j] = arr [i][j];
+            if (arr [i][j] == g_emptyCell) {
                 if (neighibor == 3) {
-                    buffer [i][j] == g_liveCell;
-                }
-            if (buffer[i][j] == g_liveCell) {
-                if ( (neighibor < 2) || (neighibor > 3) ) {
-                    buffer [i][j] == g_emptyCell;
+                    buffer [i][j] = g_liveCell;
                 }
             }
-
+            if (arr[i][j] == g_liveCell) {
+                if ( (neighibor < 2) || (neighibor > 3) ) {
+                    buffer [i][j] = g_emptyCell;
+                }
             }
         }
     }
-    return buffer;
+    return  buffer;
 }
 
 void flip (char **A , char **B ) {

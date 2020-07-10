@@ -18,7 +18,7 @@ int main()
     int width   = getNumUser ("width");
     int height  = getNumUser ("height");
     int density = getNumUser ( "density degree from 1 to 100 ");
-    int group   = getNumUser ("grouping degree from 1 to 100 ");
+    //int group   = getNumUser ("grouping degree from 1 to 100 ");
 
     char **arr1 = constructorArr (width, height);
     char **arr2 = constructorArr (width, height);
@@ -27,15 +27,15 @@ int main()
     char **arrBuf = arr2;
 
     filling (arr, width, height);
-    fillingFirstGeneration (arr, width, height , density, group);
+    fillingFirstGeneration (arr, width, height , density);
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 5000; ++i) {
         std::system("clear");
 
         arr = stepConwayLive ( arr , arrBuf, width , height);
         printArr (arr, width, height);
         //flip (arr, arrBuf);
-        usleep(300000);
+        usleep(100000);
         //sleep (1);
     }
     destructorArr ( arr1, width);
