@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "conway.h"
 
+//we ask the user for a number, check return
 int getNumUser (std::string descriptor) {
     while (true) {
         std::cout << descriptor << std::endl;
@@ -20,6 +21,8 @@ int getNumUser (std::string descriptor) {
     }
 }
 
+// initialize 2d dynamic array
+// "array of pointers"
 char ** constructorArr (int width, int height) {
     char ** ptrArr = new char * [width] ;
     for (int i = 0; i < width ; ++i) {
@@ -39,19 +42,6 @@ void filling (char **arr, int width , int height) {
     for (int i = 0 ; i < width ; ++i ) {
         for (int j = 0 ; j < height ; ++j ) {
             arr[i][j] = g_emptyCell ;
-
-        }
-    }
-}
-
-void revertfiling (char **arr, int width , int height) {
-    for (int i = 0 ; i < width ; ++i ) {
-        for (int j = 0 ; j < height ; ++j ) {
-            if (arr[i][j] == g_liveCell) {
-                arr[i][j] = g_emptyCell;
-            } else {
-                arr[i][j] = g_liveCell;
-            }
         }
     }
 }
@@ -71,12 +61,13 @@ int getRandomNumber(int min, int max) {
     return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
+//fill the field randomly but with the parameter
 void fillingFirstGeneration (char ** arr , int width , int height ,
                              int density ) {
     density = 100 - density ;
-    for (int i = 0 ; i < width ; ++i ) {
-        for (int j = 0 ; j < height ; ++j ) {
-            if ( (getRandomNumber (0,90) - density/3 > getRandomNumber (0, density + 30)) ) {
+    for (int i = 0 ; i < width ; ++i) {
+        for (int j = 0 ; j < height ; ++j) {
+            if ( (getRandomNumber (0, 90) - density/3 > getRandomNumber (0, density + 30)) ) {
                 arr[i][j] = g_liveCell ;
             } else {
                 arr[i][j] = g_emptyCell;
@@ -86,7 +77,7 @@ void fillingFirstGeneration (char ** arr , int width , int height ,
 }
 
 int getNeighborNum (char **arr, int a , int width, int b ,int height) {
-    short int neighibor {0};
+    int neighibor {0};
     for ( int i = -1 ; i < 2 ; ++i ) {
         for ( int j = - 1 ; j < 2 ; ++j  ) {
             // exclude from check:
@@ -100,7 +91,6 @@ int getNeighborNum (char **arr, int a , int width, int b ,int height) {
                (a + i >= width) || (b + j >= height ) ) {
                 continue;
             }
-
             if (arr[a+i][b+j] == g_liveCell) {
                 ++neighibor;
             }
@@ -109,29 +99,31 @@ int getNeighborNum (char **arr, int a , int width, int b ,int height) {
     return neighibor;
 }
 
-char ** stepConwayLive (char **arr, char **buffer, int width, int height) {
+char ** stepConwayLive (char **arr, char **buffer, int width, int height , int * population) {
+    int pop {0}; // to count the population
+    // iterating over cell indices
     for (int i = 0 ; i < width ; ++i) {
         for (int j = 0; j < height ; ++j) {
             int neighibor {0};
+            // count neighibor
             neighibor = getNeighborNum (arr, i , width , j , height);
+            // buffer takes value
             buffer [i][j] = arr [i][j];
             if (arr [i][j] == g_emptyCell) {
                 if (neighibor == 3) {
                     buffer [i][j] = g_liveCell;
+                    ++pop;
                 }
             }
             if (arr[i][j] == g_liveCell) {
+                ++pop ;
                 if ( (neighibor < 2) || (neighibor > 3) ) {
                     buffer [i][j] = g_emptyCell;
+                    --pop;
                 }
             }
         }
     }
-    return  buffer;
-}
-
-void flip (char **A , char **B ) {
-    char **temp = A;
-    A = B;
-    B = temp;
+    *population = pop;
+    return buffer ;
 }

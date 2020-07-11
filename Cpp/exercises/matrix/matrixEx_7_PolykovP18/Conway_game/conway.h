@@ -12,7 +12,7 @@ int getNeighborNum (char **arr, int a , int width, int b ,int height) ;
 void fillingFirstGeneration (char ** arr , int width , int height ,
                              int detensity);
 void flip (char **A , char **B ) ;
-char ** stepConwayLive (char **arr, char **buffer, int width, int height) ;
+char ** stepConwayLive (char **arr, char **buffer, int width, int height, int * population) ;
 const char  g_emptyCell = ' ';
 const char  g_liveCell = '*';
 
