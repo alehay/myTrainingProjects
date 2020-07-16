@@ -189,18 +189,18 @@ int main() {
 
         //remove the filling line
         int k = heightPlayingField - 1;
-		for (int i = heightPlayingField - 1; i > 0; i--) {
-			int count = 0;
-			for (int j = 0; j < widthPlayingField; j++) {
-				if (field[i][j]) {
+        for (int i = heightPlayingField - 1; i > 0; i--) {
+            int count = 0;
+            for (int j = 0; j < widthPlayingField; j++) {
+                if (field[i][j]) {
                     count++;
                 }
-				field[k][j] = field[i][j];
-			}
-			if (count < widthPlayingField) {
-                k--;
-            }
-		}
+                field[k][j] = field[i][j];
+                }
+                if (count < widthPlayingField) {
+                    k--;
+                }
+        }
         //first tetramino
         // works only 1 time at the beginning of the game
         if (beginGame) {
