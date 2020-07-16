@@ -196,10 +196,10 @@ int main() {
                     count++;
                 }
                 field[k][j] = field[i][j];
-                }
-                if (count < widthPlayingField) {
-                    k--;
-                }
+            }
+            if (count < widthPlayingField) {
+                k--;
+            }
         }
         //first tetramino
         // works only 1 time at the beginning of the game
