@@ -10,12 +10,12 @@ int field[heightPlayingField][widthPlayingField] = { 0 } ;
 // tetramino tetris figures
 int figures[7][4] =  {
     {1,3,5,7}, // I - 0
-	{2,4,5,7}, // S - 1
-	{3,5,4,6}, // Z - 2
-	{3,5,4,7}, // T - 3
-	{2,3,5,7}, // L - 4
-	{3,5,7,6}, // J - 5
-	{2,3,4,5}, // O - 6
+    {2,4,5,7}, // S - 1
+    {3,5,4,6}, // Z - 2
+    {3,5,4,7}, // T - 3
+    {2,3,5,7}, // L - 4
+    {3,5,7,6}, // J - 5
+    {2,3,4,5}, // O - 6
 };
 ////////////////////////////////////////////////////////////////
 /* drawing:
@@ -41,23 +41,23 @@ teramino S examl
 */ ///////////////////////////////////////////////////////////
 
 
-// initialization tetramino atribut  Color and Coordinat
+// initialization tetramino atribut  Color and coordinates
 struct Point
 {
-    int x,y ;
-} ;
+    int x, y;
+};
 
-Point coordinat[4];
-Point tempCordinat[4];
+Point coordinates[4];
+Point tempcoordinates[4];
 int colorNum = 1 ;
 
 //check for going abroad 
 bool check () {
     for (int i = 0; i < 4; i++) {
-        if (coordinat[i].x < 0 || coordinat[i].x >= widthPlayingField  ||
-        coordinat[i].y >= heightPlayingField ) {
+        if (coordinates[i].x < 0 || coordinates[i].x >= widthPlayingField  ||
+        coordinates[i].y >= heightPlayingField ) {
             return false;
-        } else if ( field[coordinat[i].y] [coordinat[i].x] ) {
+        } else if ( field[coordinates[i].y] [coordinates[i].x] ) {
             return false;
         }
     }
@@ -108,9 +108,7 @@ int main() {
             // Close window : exit
             if (event.type == sf::Event::Closed)
                 tetrisWindow.close();
-
             if (event.type == sf::Event::KeyPressed) {
-
             } else if (event.key.code == sf::Keyboard::Left) {
                 dX = -1;
             } else if (event.key.code == sf::Keyboard::Right) {
@@ -125,17 +123,17 @@ int main() {
             delay = 0.05;
         }
 
-        //applying coordinates horizontal move
+        //applying coordinateses horizontal move
         for (int i = 0; i < 4; i++) {
-            tempCordinat[i] = coordinat[i];
-            coordinat[i].x += dX;
+            tempcoordinates[i] = coordinates[i];
+            coordinates[i].x += dX;
         }
 
-        //if we went abroad, we return the old coordinates
+        //if we went abroad, we return the old coordinateses
         // undo horizontal move
-        if (!check () ) {
+        if (!check ()) {
             for (int i = 0; i < 4; i++)
-            coordinat [i] = tempCordinat [i];
+            coordinates [i] = tempcoordinates [i];
         }
         
         /*
@@ -147,41 +145,41 @@ int main() {
         */
         //rotation
         if (rotate) {
-            Point origin = coordinat[1]; // centr rotate
+            Point origin = coordinates[1]; // centr rotate
             for (int i = 0; i < 4 ; i++ ) {
-                int x = coordinat[i].y - origin.y; // y - y0
-                int y = coordinat[i].x - origin.x; // x - x0
-                coordinat[i].x = origin.x - x; // x_0 - (y - y0)
-                coordinat[i].y = origin.y + y ; //y_0 + (x - x_0) 
+                int x = coordinates[i].y - origin.y; // y - y0
+                int y = coordinates[i].x - origin.x; // x - x0
+                coordinates[i].x = origin.x - x; // x_0 - (y - y0)
+                coordinates[i].y = origin.y + y ; //y_0 + (x - x_0)
             }
         }
 
         if (!check () ) {
             for (int i = 0; i < 4; i++)
-            coordinat [i] = tempCordinat [i];
+            coordinates [i] = tempcoordinates [i];
         }
 
         // tretramino  tic tac
         // move down
         if (timer > delay) {
             for (int i = 0; i < 4; i ++) {
-                tempCordinat[i] = coordinat[i] ;
-                coordinat[i].y += 1;
+                tempcoordinates[i] = coordinates[i] ;
+                coordinates[i].y += 1;
             }
             
             if (!check()) {
                 // save tetrimino on the field
                 // tetramino stoped 
                 for (int i = 0 ; i < 4 ; i++) {
-                    field [tempCordinat[i].y] [tempCordinat[i].x] = colorNum;
+                    field [tempcoordinates[i].y] [tempcoordinates[i].x] = colorNum;
                 }
                 
                 // generate new tetramino
                 colorNum = 1 + rand() % 7;
                 n = rand () % 7;
                 for (int i = 0 ; i < 4; i ++) {
-                    coordinat[i].x = figures[n][i] % 2;
-                    coordinat[i].y = figures[n][i] / 2;
+                    coordinates[i].x = figures[n][i] % 2;
+                    coordinates[i].y = figures[n][i] / 2;
                 } 
             }           
             timer = 0;
@@ -207,8 +205,8 @@ int main() {
             beginGame = false ;
             n = rand() % 7 ;
             for (int i = 0 ; i < 4 ; i++) {
-                coordinat[i].x = figures[n][i] % 2;
-                coordinat[i].y = figures[n][i] / 2;
+                coordinates[i].x = figures[n][i] % 2;
+                coordinates[i].y = figures[n][i] / 2;
             }
         }
         // Clear screen
@@ -227,15 +225,15 @@ int main() {
             }
 
         }
-        // uv texture coordinates ????
+        // uv texture coordinateses ????
         for ( int i = 0; i < 4; i++) {
             blockSprite.setTextureRect(sf::IntRect(colorNum * oneBlockSizePx, 0 ,
                                                             oneBlockSizePx, oneBlockSizePx) );
 
             // give position evry tetramino bloc
             //Tetrimino that fly 
-            blockSprite.setPosition(coordinat[i].x * oneBlockSizePx ,
-                                    coordinat[i].y * oneBlockSizePx);
+            blockSprite.setPosition(coordinates[i].x * oneBlockSizePx ,
+                                    coordinates[i].y * oneBlockSizePx);
             tetrisWindow.draw(blockSprite);
         }
 
