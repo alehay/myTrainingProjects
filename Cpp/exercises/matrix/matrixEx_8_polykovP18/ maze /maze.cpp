@@ -61,8 +61,17 @@ void drowGrid (int cellSize, char **arr, int cellNumWidth, int cellNumHeight,
             }
             if (arr [i][j]== g_visitedSulution) {
                 rect->setPosition (cellSize * i , cellSize * j);
-                rect->setFillColor(sf::Color::Blue);
+                rect->setFillColor(sf::Color(0,191,250,255));
             }
+            if (arr [i][j]== g_out) {
+                rect->setPosition (cellSize * i , cellSize * j);
+                rect->setFillColor(sf::Color::Yellow);
+            }
+            if (arr [i][j] == g_wrong) {
+                rect->setPosition (cellSize * i , cellSize * j);
+                rect->setFillColor(sf::Color::Red);                
+            }
+
             app->draw(*rect);
         }
     }
@@ -101,7 +110,7 @@ cellStack getNeighbor (char **arr, cell * curentCell , int width, int height, in
             mazeCellCurrent = arr [neighboringCell[i].x ] [neighboringCell[i].y];
             //cell TempCellCurrent = neighboringCell[i] ;
             // if not a wall and not visited
-            if   ( mazeCellCurrent != g_wallCell && mazeCellCurrent != sign ) {
+            if   ( mazeCellCurrent != g_wallCell && mazeCellCurrent != g_wrong && mazeCellCurrent != sign ) {
                 neighiborResult.cells[size] = neighboringCell[i];
                 //neighiborResult.cells[size] = TempCellCurrent;
                 size++;
@@ -121,7 +130,7 @@ void removeWall (cell first , cell last, char ** arr) {
     arr [addX][addY] = g_visitedCell;
 }
 
-void mazeGenStep (char **arr, std::vector <cell> * cellStackWay ,cell *  curentCell ,
+void mazeGenStep (char **arr, std::vector <cell> * cellStackWay , cell *  curentCell ,
                                                     int widthField ,int heightField , bool * genEnded ) {
 
 
@@ -153,35 +162,44 @@ void mazeGenStep (char **arr, std::vector <cell> * cellStackWay ,cell *  curentC
 
 
 
-/*
+
 void mazeSolution (char **arr, std::vector <cell> * cellStackSolution , cell *  curentCell ,
                                                     int widthField , int heightField , cell * finishCell,  bool * sulutionEnded ) {
 
 
     bool NotMoveMade {true};
     while (NotMoveMade) {
+        if ( (curentCell->x == finishCell->x) && (curentCell->y == finishCell->y)  ) {
+            *sulutionEnded = true;
+            return;
+        }
+
         arr[curentCell->x][curentCell->y] = g_visitedSulution;
-        
+
         cell cellNegibordTarget ;
-        cellStack cellStacNeighibord =  getNeighborPass ( arr, curentCell ,
-        widthField , heightField , 2 ) ;
+        cellStack cellStacNeighibord =  getNeighbor ( arr, curentCell ,
+        widthField , heightField , 1 , g_visitedSulution ) ;
         if (cellStacNeighibord.size != 0 ) {
             int randNum = getRandomNumber (0, cellStacNeighibord.size - 1 );
             cellNegibordTarget = cellStacNeighibord.cells[randNum];
-            removeWall (*curentCell, cellNegibordTarget, arr );
+
             arr[cellNegibordTarget.x][cellNegibordTarget.y] = g_currentCell;
-            cellStackWay->push_back (*curentCell);
+            cellStackSolution->push_back (*curentCell);
             *curentCell = cellNegibordTarget;
             NotMoveMade = false;
+
         } else {
-           if (cellStackWay->size() >= 0) {
-                *curentCell = cellStackWay->at(cellStackWay->size()-1);
-                cellStackWay->pop_back();
+           if (cellStackSolution->size() >= 0) {
+                arr[curentCell->x][curentCell->y] = g_wrong;
+                *curentCell = cellStackSolution->at(cellStackSolution->size()-1);
+                
+                cellStackSolution->pop_back();
+                
            } else {
-               *genEnded = true;
+               *sulutionEnded = true;
            }
         }
     }
 }
 
-*/
+

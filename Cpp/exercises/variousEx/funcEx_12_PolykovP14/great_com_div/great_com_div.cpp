@@ -35,7 +35,7 @@ int gfk (int  a , int b) {
 
 
 //greatest common factor
-long long getGreatCommonFactor (long long a, long long b){
+long long getGreatCommonFactor (long long a, long long b) {
     if(b==0)
         return a;
-    return getGreatCommonFactor(b, a%b)
+    return getGreatCommonFactor(b, a%b) ;}

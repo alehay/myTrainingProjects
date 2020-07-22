@@ -30,8 +30,8 @@ int main() {
     srand(static_cast<unsigned int>(time(NULL)));
 
     // window dimensions
-    int screenWidth {800} ; // all screan!
-    int screenHeight {600} ; // all screan !
+    int screenWidth {1200} ; // all screan!
+    int screenHeight {960} ; // all screan !
 
     // generation field size
     int fieldWidth  = screenWidth - screenWidth / 6 ;
@@ -40,10 +40,10 @@ int main() {
     // Create the main window
     sf::RenderWindow app(sf::VideoMode(screenWidth, screenHeight), "SFML window");
 
-    app.setFramerateLimit (2) ;
+    app.setFramerateLimit (20) ;
     app.setPosition (sf::Vector2i(10,10));
 
-    int cellSize {25} ;
+    int cellSize {2} ;
     // the number of cells is generated automatically
     int cellNumWidth = fieldWidth / cellSize ;
     int cellNumHeight = fieldHeight / cellSize  ;
@@ -55,11 +55,14 @@ int main() {
     curentCell.x = 1;
     curentCell.y = 1;
 
+    cell curentCellSul;
+    curentCellSul.x = 1;
+    curentCellSul.y = 1;
+
     cell finishCell;
-    if ( arr1 [cellNumWidth - 2][cellNumHeight - 2] == g_emptyCell ) {
-        finishCell.x =  cellNumWidth - 2 ;
-        finishCell.y = cellNumHeight - 2 ;
-    }
+    finishCell.x =  cellNumWidth - 3 ;
+    finishCell.y = cellNumHeight - 3 ;
+
 
     // initialization cell
     sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
@@ -67,6 +70,7 @@ int main() {
 
     //
     bool genEnded {false};
+    bool sulutionEnded {false};
 	// Start the game loop
     while (app.isOpen())
     {
@@ -78,20 +82,24 @@ int main() {
                 app.close();
         }
 
+        for (int i = 0 ; i < 200 ; i++) {
         if ( !(genEnded)) {
             mazeGenStep (arr1, &cellsStackWay, &curentCell , cellNumWidth , cellNumHeight, &genEnded  );
         }
-        /*if ( genEnded ) {
 
-        } */
+        if ( genEnded && !(sulutionEnded) ) {
+            arr1 [finishCell.x][finishCell.y] = g_out;
+            mazeSolution (arr1, &cellsStackWay, &curentCellSul,  cellNumWidth , cellNumHeight, &finishCell, &sulutionEnded) ;
 
+        }
+        }
         //void mazeGenStep (char **arr, std::vector <cell> * cellStackWay ,
         // cell  curentCell ,int widthField ,int heightField );
         // Clear screen
         app.clear();
 
-        drowGrid (cellSize, arr1, cellNumWidth , cellNumHeight, &app , &cell ) ;
 
+        drowGrid (cellSize, arr1, cellNumWidth , cellNumHeight, &app , &cell ) ;
 
 
         // Update the window
