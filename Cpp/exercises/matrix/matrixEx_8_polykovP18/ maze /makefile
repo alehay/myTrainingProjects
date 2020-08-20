@@ -4,7 +4,7 @@ TARGET = bild
 
 CC = clang++
 
-COMPILE_FLAG = 
+COMPILE_FLAG = -c
 
 
 
@@ -16,11 +16,11 @@ mazeGen: main.o maze.o text.o
 	$(CC) main.o maze.o text.o -o $@ $(SFML_INCLUDE)
 
 main.o : main.cpp
-	$(CC) -c main.cpp  $(SFML_INCLUDE) 
+	$(CC) $(COMPILE_FLAG) main.cpp  
 maze.o : maze.cpp
-	$(CC) -c maze.cpp $(SFML_INCLUDE)
+	$(CC) $(COMPILE_FLAG) maze.cpp 
 text.o : text.cpp
-	$(CC) -c text.cpp $(SFML_INCLUDE)
+	$(CC) $(COMPILE_FLAG) text.cpp 
 
 clean:
 	rm -f *.o 
