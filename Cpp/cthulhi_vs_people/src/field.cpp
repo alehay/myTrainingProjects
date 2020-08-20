@@ -6,7 +6,7 @@
 #include "../header/field.h"
 
 // constructor with parametr
-field::field(int length, int width, int depth) {
+field::field(short int length, short int width,short int depth) {
     // save parametrs for generation
     lengthField = length;
     widthField = width;
@@ -97,7 +97,7 @@ void field::loadSprite () {
     sprite.setTexture(stoneFloorType1);
 }
 
-sf::Texture & field::getTextureChoice (int length, int width) {
+sf::Texture & field::getTextureChoice (short int length,short int width) {
     switch (fieldArrayCell [length] [width] [0]){
         
         //pasFloorType0

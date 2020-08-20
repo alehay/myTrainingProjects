@@ -9,9 +9,9 @@ class field
 {
     public:
         //  fieldArrayCell [lengtht] [widht] [depth] 
-        field(int length, int width, int depth);
+        field(short int length, short int width, short int depth);
         virtual ~field();
-        // REDER field
+        // RENDER field
         void show (sf::RenderWindow * app) ;
     
     private:
@@ -36,7 +36,7 @@ class field
         void loadTexturePack0 ();
         void loadSprite ();
 
-        sf::Texture & getTextureChoice (int length, int width);
+        sf::Texture & getTextureChoice (short int length, short int width);
 
 
 
@@ -46,9 +46,9 @@ class field
         char *** fieldArrayCell;
 
         //game field parametrs
-        int lengthField;
-        int widthField;
-        int depthField;
+        short int lengthField;
+        short int widthField;
+        short int depthField;
 
         // Type cell state
         const char emptyCell = static_cast <char> (1);
@@ -74,7 +74,7 @@ class field
         };
 
         struct cellStack {
-            int size;
+            unsigned int size;
             cell * cells;
         };
 
