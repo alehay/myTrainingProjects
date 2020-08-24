@@ -9,6 +9,6 @@ used:
 пока только сгенерировано поле, и создан класс врага
 
 
-![alt text] (https://sun1-27.userapi.com/fQFrl-fP7LcFhGmQNxBvLgdT3IpHRtDRMacs8Q/Sf2iEE0o54E.jpg)
+![alt text](https://sun1-27.userapi.com/fQFrl-fP7LcFhGmQNxBvLgdT3IpHRtDRMacs8Q/Sf2iEE0o54E.jpg)
 
 

@@ -9,25 +9,27 @@ class GameCharacter
 {
 private:
     const std::string PATH_TEXTURE_FILE {"texture/demon-idle.png"} ;
-    short int textureTileSize{48*2}; 
-    struct coordinates {
-        short leng_x {1};
-        short wid_y {1};
-        short dep_z {0};
-    };
+    short int textureTileSize{48*2};  
+
     sf::Texture charTexture ;
     sf::Sprite sprite;
     float currentFrame {0};
 
 
     ///////////  ATTRIBUTES ///////////////
-    coordinates position;
-    
+    sf::Vector2f position;
+    float speedMove ;     
 
 public:
-    GameCharacter (short int pos_x, short int pos_y, short int pos_z = 0);
+    GameCharacter (short int pos_x, short int pos_y);
     ~GameCharacter ();
     void show(sf::RenderWindow * app, float time); 
+
+    void movNorth (float time);
+    void movSouth (float time);
+    void movWest (float time);
+    void movEast (float time);
+
 
 private: 
     void loadTexture ();

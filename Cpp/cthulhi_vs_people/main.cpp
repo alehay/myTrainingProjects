@@ -23,13 +23,14 @@ int main()
 
     field *myGameField = new field(25,15,1);
     GameCharacter Demon (20,20);
-    GameCharacter Demon2 (120,140);
+    int timeRatio {1000};
 	// Start the game loop
     while (app.isOpen())
     {   
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart(); //reload time
-        time = time/800; //game speed
+        
+        time = time / timeRatio; //game speed
         
         // Process events
         sf::Event event;
@@ -39,6 +40,27 @@ int main()
             if (event.type == sf::Event::Closed)
                 app.close();
         }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+                Demon.movWest(time);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+                Demon.movEast(time);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                Demon.movNorth(time);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+                Demon.movSouth(time);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) &&
+                (timeRatio < 2500)){
+                timeRatio += 50;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && 
+                (timeRatio > 500)){
+                timeRatio -=50;
+            }
+        //}
 
         // Clear screen
         app.clear();
@@ -47,7 +69,6 @@ int main()
        // app.draw(sprite);
         myGameField->show(& app);
         Demon.show(& app, time);
-        Demon2.show(& app, time);
         // Update the window
         app.display();
     }
