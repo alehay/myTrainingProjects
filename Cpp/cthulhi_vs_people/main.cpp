@@ -46,7 +46,7 @@ int main()
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
                 Demon.movEast(time);
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
                 Demon.movNorth(time);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
@@ -59,6 +59,9 @@ int main()
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && 
                 (timeRatio > 500)){
                 timeRatio -=50;
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                Demon.attack(time);
             }
         //}
 
