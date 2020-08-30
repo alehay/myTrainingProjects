@@ -55,6 +55,16 @@ void field::show (sf::RenderWindow * app) {
     }
 }
 
+//field state 
+char field::getFieldState (short int length, short int width, short int depth) {
+    if  (length >= 0 && length < lengthField && 
+         width  >= 0 && width  < widthField  &&
+        depth   >= 0 && depth  < depthField  ) {
+        return fieldArrayCell [length] [width] [depth] ;
+    }
+}
+
+
 // texture pack load
 void field::loadTexturePack0() {
     stoneFloorType0.loadFromFile (

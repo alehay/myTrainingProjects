@@ -13,6 +13,10 @@ class field
         virtual ~field();
         // RENDER field
         void show (sf::RenderWindow * app) ;
+        //get field state
+        char getFieldState (short int length, short int width, short int depth);
+       
+        friend class GameCharacter; 
     
     private:
 
@@ -37,8 +41,6 @@ class field
         void loadSprite ();
 
         sf::Texture & getTextureChoice (short int length, short int width);
-
-
 
         ////////////////////// FIELD CELL STATE /////////////////
         // game field statde
@@ -85,6 +87,8 @@ class field
         cellStack getNeighbor  (cell * curentCell);
         void removeWall (cell * first, cell * last) ;
         void randomizationCellType ();
+
+
 };
 
 #endif // FIELD_H

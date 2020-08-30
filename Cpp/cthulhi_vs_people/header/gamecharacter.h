@@ -9,22 +9,22 @@ class GameCharacter
 {
 private:
   
-    const std::string PATH_TEXTURE_FILE {"texture/demon-idle.png"} ;
-
-    const std::string PATH_TEXTURE_ATTACK {"texture/demon-attack.png"};
-    short int textureTileSize{48*2};  
+    const std::string PATH_TEXTURE_FILE {"texture/Demon.png"} ;
+    //  one size tile 
+    short int texTile{48};  
 
     sf::Texture charTexture ;
     sf::Sprite sprite;
     float currentFrame {0}; // 
-    char direction {1}; //  direction for animation
+    
 
-    ///////////  ATTRIBUTES ///////////////
+    ///////////  ATTRIBUTES //////////
     sf::Vector2f position;
-    float speedMove ;     
+    float speedMove {0.5};     
 
+    /////////// Charackter state ////////
     enum class State {
-        STANDS,
+        STANDS, //default state
         MOVES,
         ATTACK
      };
@@ -44,9 +44,9 @@ public:
     
 
 private: 
-    void loadTexture (State);
+    void loadTexture ();
     void loadSprite();
-
+    
 
 
 
