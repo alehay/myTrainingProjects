@@ -1,5 +1,4 @@
 
-
 #ifndef FIELD_H
 #define FIELD_H
 #include <SFML/Graphics.hpp>
@@ -16,7 +15,6 @@ class field
         //get field state
         char getFieldState (short int length, short int width, short int depth);
        
-        friend class GameCharacter; 
     
     private:
 

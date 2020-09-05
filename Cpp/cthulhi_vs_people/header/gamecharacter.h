@@ -3,12 +3,13 @@
 
 #include "iostream"
 #include "SFML/Graphics.hpp"
-#include "../header/resources.h"
+
 
 class GameCharacter
 {
 private:
-  
+    
+    // unique character texture
     const std::string PATH_TEXTURE_FILE {"texture/Demon.png"} ;
     //  one size tile 
     short int texTile{48};  
@@ -32,7 +33,7 @@ private:
     State currentState;
 
 public:
-    GameCharacter (short int pos_x, short int pos_y);
+    GameCharacter (short int pos_x  = 1 , short int pos_y = 10 )  ;
     ~GameCharacter ();
     void show(sf::RenderWindow * app, float time); 
 

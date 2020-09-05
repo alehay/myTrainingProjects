@@ -1,8 +1,13 @@
 #include <SFML/Graphics.hpp>
-#include "header/field.h"
 #include "header/resources.h"
+#include "header/field.h"
 #include <ctime> // для функции time()
 #include "header/gamecharacter.h"
+#include "header/enemy.h"
+#include "header/hero.h"
+
+
+
 
 int main()
 
@@ -22,7 +27,7 @@ int main()
 
 
     field *myGameField = new field(25,15,1);
-    GameCharacter Demon (20,20);
+    Enemy Demon (10, 10);
     int timeRatio {1000};
 	// Start the game loop
     while (app.isOpen())
@@ -40,30 +45,10 @@ int main()
             if (event.type == sf::Event::Closed)
                 app.close();
         }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                Demon.movWest(time);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                Demon.movEast(time);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                Demon.movNorth(time);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                Demon.movSouth(time);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) &&
-                (timeRatio < 2500)){
-                timeRatio += 50;
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && 
-                (timeRatio > 500)){
-                timeRatio -=50;
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                Demon.attack(time);
-            }
-        //}
+
+
+        keyboardHandling (Demon, time);
+
 
         // Clear screen
         app.clear();
