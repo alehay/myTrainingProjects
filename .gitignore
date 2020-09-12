@@ -71,6 +71,7 @@ Makefile*
 *build-*
 *.qm
 *.prl
+*.swp
 
 # Qt unit tests
 target_wrapper.*
@@ -97,3 +98,7 @@ Py/exercises/array/__pycache__/
 Debug/
 Bild/
 Release/
+
+Debug*/
+Bild*/
+Release*/

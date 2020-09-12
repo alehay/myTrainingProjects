@@ -1,0 +1,9 @@
+Create class "Book"
+the class chould store 
+1) ISBN code 
+2) name 
+3) author's surname 
+4) the date of registration of copyright 
+5) whether the book was isuued or not 
+
+write function that check whether the book has been handed out , cheching the date that is entered into the object of the class book 
