@@ -38,7 +38,8 @@ public:
 
     void setISBN (std::string in_ISBN) ;
     void setDate (int day, int month, int year ) ;
-
+    friend bool operator== ( const Book & first, const Book & second );
+    friend std::ostream & operator << (std::ostream &out , const Book & book );
 };
 
 #endif // BOOK_H

@@ -47,3 +47,12 @@ void Book::setDate (int day, int month, int year) {
         return;
     }
 }
+
+bool operator== (const  Book & first, const Book & second ) {
+   return first.ISBN == second.ISBN;
+}
+std::ostream & operator << (std::ostream &out, const Book & book) {
+    out << book.title << std::endl << book.autName << std::endl
+        << book.ISBN << std::endl;
+    return  out;
+}
