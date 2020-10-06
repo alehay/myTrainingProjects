@@ -72,12 +72,16 @@ Makefile*
 *.qm
 *.prl
 *.swp
+*.pro
+
 
 # Qt unit tests
 target_wrapper.*
 
 # QtCreator
 *.autosave
+ *.pro
+ *.pro
 
 # QtCreator Qml
 *.qmlproject.user
