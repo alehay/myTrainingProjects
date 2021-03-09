@@ -106,3 +106,9 @@ Release/
 Debug*/
 Bild*/
 Release*/
+
+CMakeCache.txt
+
+cmake_install.cmake
+
+CMakeFiles
